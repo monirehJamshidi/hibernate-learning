@@ -212,6 +212,68 @@ public class PersonService {
         }
     }
 
+    public static List<Person> getAllPersonByName(String name){
+        EntityManager entityManager = JPA.entityManager();
+
+        try {
+
+             return entityManager.createQuery(
+                    "select p from Person p where p.name = :name order by p.name desc",
+                    Person.class)
+                     .setParameter("name", name)
+                     .getResultList();
+
+        } finally {
+            entityManager.close();
+        }
+    }
+
+    public static List<Person> getAllPersonByDepartmentName(String departmentName){
+        EntityManager entityManager = JPA.entityManager();
+
+        try {
+            return entityManager.createQuery(
+                    "select p from Person p join p.department d where d.name = :departmentName",
+                    Person.class)
+                    .setParameter("departmentName", departmentName)
+                    .getResultList();
+
+        } finally {
+            entityManager.close();
+        }
+    }
+
+    public static List<Person> getAllPersonByDepartmentNameWithJoinFetch(String departmentName){
+        EntityManager entityManager = JPA.entityManager();
+
+        try {
+            return entityManager.createQuery(
+                            "select p from Person p join fetch p.department d where d.name = :departmentName",
+                            Person.class)
+                    .setParameter("departmentName", departmentName)
+                    .getResultList();
+
+        } finally {
+            entityManager.close();
+        }
+    }
+
+    public static List<Person> getAllPersonWithPagination(int firstResult, int maxResult){
+        EntityManager entityManager = JPA.entityManager();
+
+        try {
+            return entityManager.createQuery(
+                            "select p from Person p order by p.personId",
+                            Person.class)
+                    .setFirstResult(firstResult)
+                    .setMaxResults(maxResult)
+                    .getResultList();
+
+        } finally {
+            entityManager.close();
+        }
+    }
+
 //    public List<Person> findAll() throws Exception {
 //
 //    }

@@ -19,8 +19,8 @@ public class Main {
 //
 //        PersonService.getInstance().save(person);
 
-        Person person1 = PersonService.findOne();
-        System.out.println(person1.getPersonId() + " - " + person1.getName() + " - " + person1.getFamily());
+//        Person person1 = PersonService.findOne();
+//        System.out.println(person1.getPersonId() + " - " + person1.getName() + " - " + person1.getFamily());
 
 //        Person personUpdate = Person.builder().personId(1).name("Monireh1").family("Jamshidi1").build();
 //        PersonService.update(personUpdate);
@@ -114,16 +114,42 @@ public class Main {
 
         //----------------------- saveWithFindDepartment -----------------------
 //        Department department = Department.builder()
-//                .departmentId(2)
+//                .departmentId(6)
 //                .build();
 //
 //        Person person = Person.builder()
-//                .name("Test")
-//                .family("Person")
+//                .name("Mahdieh")
+//                .family("Jamshidi")
 //                .department(department)
 //                .build();
 //
 //        PersonService.saveWithFindDepartment(person, department);
+        //----------------------- getPersonByName -----------------------
+//        List<Person> personList = PersonService.getAllPersonByName("Monireh");
+//        personList.stream().forEach(person -> System.out.println(person.getName() + " " + person.getFamily()));
+
+
+        //----------------------- getAllPersonByDepartmentName -----------------------
+//        List<Person> personList = PersonService.getAllPersonByDepartmentName("IT");
+//        personList.stream().forEach(person -> System.out.println(person.getName() + " " + person.getFamily()));
+
+
+        //----------------------- getAllPersonByDepartmentNameWithJoinFetch -----------------------
+//        List<Person> personList = PersonService.getAllPersonByDepartmentNameWithJoinFetch("IT");
+//        personList.stream().forEach(person -> System.out.println(person.getName() + " " + person.getFamily()));
+
+        //----------------------- getAllPersonByDepartmentNameWithJoinFetch -----------------------
+//        List<Person> personList = PersonService.getAllPersonWithPagination(0, 5);
+//        personList.stream().forEach(person -> System.out.println(person.getName() + " " + person.getFamily()));
+
+        //getAllDepartment
+        List<Department> departments = DepartmentService.getAllDepartment();
+        departments.stream().forEach(department -> {
+            System.out.println(department.getName() + " " + department.getDepartmentId());
+        });
+
+
+
     }
 
     public static void findDepartment(){

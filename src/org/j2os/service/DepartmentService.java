@@ -81,7 +81,7 @@ public class DepartmentService {
         }
     }
 
-    public static void findAllDepartmentsWithJoinGFetch(){
+    public static void findAllDepartmentsWithJoinFetch(){
         EntityManager entityManager = JPA.entityManager();
 
         try {
@@ -172,5 +172,20 @@ public class DepartmentService {
         } finally {
             entityManager.close();
         }
+    }
+
+    public static List<Department> getAllDepartment(){
+
+        EntityManager entityManager = JPA.entityManager();
+
+        try{
+            return entityManager.createQuery(
+                    "select distinct d from Department d left join d.persons",
+                    Department.class)
+                    .getResultList();
+        } finally {
+            entityManager.close();
+        }
+
     }
 }
